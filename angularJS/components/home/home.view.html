@@ -1,0 +1,107 @@
+<!-- home.html -->
+<style>
+body { 
+    background: url(resources/images/mountains.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#message1 {
+    margin-top: 5em;
+}
+</style>
+
+<script>
+    $("#message1").hide();
+    $("#message2").hide();
+    $("#message3").hide();
+    $("#message4").hide();
+
+    $("#message1").fadeIn(4000, function(){
+    $("#message2").fadeIn(2500, function(){
+    $("#message3").fadeIn(3000, function(){
+    $("#message3").delay(3000).fadeOut(1000, function(){
+    $("#message2").fadeOut(800, function(){
+    $("#message1").fadeOut(600, function(){
+    $("#message4").fadeIn(3000, function(){
+    });
+    });
+    });   });});
+    });
+    });
+    
+</script>
+
+<div class="row" id="message1">
+    <div class="col-md-4 offset-md-4">
+        <p>
+           <h3 class="bg-light text-center p-4 rounded"> Take your skills to the next level. </h3>
+        </p>
+    </div>
+</div>
+
+<div class="row" id="message2">
+    <div class="col-md-4 offset-md-4">
+        <p>
+            <h3 class="bg-light text-center p-4 rounded"> The journey to a brighter tomorrow begins with a single step. </h3>
+        </p>
+    </div>
+</div>
+
+<div class="row" id="message3">
+    <div class="col-md-4 offset-md-4">
+        <p>
+            <h3 class="bg-light text-center p-4 rounded"> Together we can get to the other side. Begin today! </h3>
+        </p>
+    </div>
+</div>
+    
+<div class="container mt-5" id="message4">
+<div class="row mt-5">
+    <div class="col-md-4">
+            <div class="card" style="width: 20rem; height: 40rem;">
+                    <img class="card-img-top" src="resources/images/climb.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Climb Higher</h5>
+                      <p class="card-text">We are working to achieve our goals.
+                          It is important to remember that you are with a team trying to reach the top
+                          with you. You have already started your journey to the top. Starting is certainly
+                          one of the hardest parts. Stay focused on your goals until you get there.
+                          You will make it with the rest of the team.
+                      </p>
+                    </div>
+            </div>
+    </div>
+    <div class="col-md-4">
+            <div class="card" style="width: 20rem; height: 40rem;">
+                    <img class="card-img-top" src="resources/images/sprint.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Stay Focused</h5>
+                      <p class="card-text">We concentrate on repetition and focus. This 
+                          guarantees we don't lose sight of the finish line. 
+                      </p>
+                    </div>
+            </div>
+    </div>
+    <div class="col-md-4">
+            <div class="card" style="width: 20rem; height: 40rem;">
+                    <img class="card-img-top" src="resources/images/collaborate.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Talk Together</h5>
+                      <p class="card-text">You are not alone. Talk it over and discuss your roadmap and challenges.
+                          Help each other with problems and questions. Do not be afraid to ask questions to things
+                          that you do not understand.
+                      </p>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+</div>

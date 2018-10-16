@@ -1,0 +1,89 @@
+<!-- examples.html -->
+
+<div class="d-flex m-5">
+  
+
+<div class="col-sm-4">
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label>Create a ToDo List</label>
+                <textarea ng-model="note" class="form-control" rows="3"></textarea>
+            </div>
+            <button ng-click="addNote(note)" class="btn btn-outline-dark mb-4">Create</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div ng-repeat="noteItem in ToDo" class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                    <div class="col-sm-11">
+                        {{ noteItem }} 
+                    </div>
+                    <span class="col-sm-1">
+                        <i ng-click="removeNote($index)" class="fa fa-minus-circle" aria-hidden="true" tabindex="0"  data-toggle="tooltip" data-placement="top" title="Delete note"></i>
+                    </span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-4 bg-light border py-3">
+    <div class="row">
+        <div class="col-sm">
+            <p>Make a GET HTTP request from real server and show data returned.</p>
+            <button ng-click="makeRequest()" class="btn btn-outline-dark px-3">
+                Get Live Data
+                <i class="fa fa-arrow-right ml-2 faa-passing animated faa-slow"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+                <div ng-repeat="user in users" class="card-body">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                        {{ user.name}}
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Email:</b> {{ user.email }}</li>
+                            <li class="list-group-item"><b>Website:</b> {{ user.website }}</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-4">
+
+<form>
+        <div class="form-group">
+          <label>First Name</label>
+          <input ng-model="customer.firstName" class="form-control"  placeholder="Enter first name.">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input ng-model="customer.lastName" class="form-control" placeholder="Enter last name.">
+        </div>
+        <button ng-click="clearFields()" class="btn btn-outline-secondary px-4 mb-4">Clear</button>
+        <p>This is an example of how ng-model builds your object to send in your requests to server.
+           One thing to notice in the code on my ng-model is how I assigned all the properties to 
+           the customer object. This way when I pass the object to the method POST request I just
+           have pass it as customer. The alternative would be to custom build the object myself, or
+           to try to send several properties of the object out a one time. Most forms have a theme to
+           what you are filling out. This form is a good example of this. All the fields here belong 
+           to person object. So let Angular build the object for you.
+        </p>
+        <p class="text-primary">
+            {{customer}}
+        </p>
+</form>
+</div>
+
+
+
+</div>

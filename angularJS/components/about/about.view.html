@@ -1,0 +1,337 @@
+<!-- about.html -->
+<script>
+$(".fa-spinner").fadeOut(3000)
+</script>
+<style>
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+#message {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animation ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration: .3s;
+  -moz-animation-duration: .3s;
+  animation-duration: .3s;
+}
+</style>
+
+<div class="jumbotron">
+  <h1 class="display-4">AngularJS Application
+  <i class="fa fa-spinner fa-spin ml-5" aria-hidden="true"></i>
+  </h1>
+  <h5 class="form-text text-muted">
+    Framework help documentation.
+  </h5>
+      <div ng-if="firstPage" class="d-flex mt-3">
+        <button ng-click="setPage(1)" class="btn btn-outline-dark ml-auto px-5">
+          Next
+          <i class="fa fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+      <div ng-if="secondPage" class="d-flex mt-3">
+        <button ng-click="setPage(2)" class="btn btn-outline-dark mr-auto px-5">
+          <i class="fa fa-arrow-left mr-2"></i>
+          Back
+        </button>
+      </div>      
+</div>
+
+<!-- Notice the NG-IF below and on the button -->
+<div ng-if="firstPage" class="container-fluid mb-5" id="message">
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card">
+  <div class="card-header">
+      <h5>
+        <img src="resources/images/globe.png" height="40em" width="40em" class="mr-2">
+        Primary Architecture
+      </h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>MVC</b> - Model View Controller Architecture</li>
+    <li class="list-group-item"><b>Model</b> - The model is where the data lives</li>
+    <li class="list-group-item"><b>View</b> - The view is html and is what you see on the page</li>
+    <li class="list-group-item"><b>Controller</b> - The controller is where the javascript works with the 
+      data that happens between the users front client end and the server back end of application
+    </li>
+    <li class="list-group-item"><b>Routing</b> - In all web applications it is very important to keep in 
+      mind that both the client and server side consist of routing http requests(request headers/request body).
+      This basic request is usually the best starting point to understand the system as a whole. Look in the 
+      URL as you progress through your applications. Use F12 to open browser inspector and watch network HTTP requests
+      going back and forth between the client and the server. Common headers are always going back and forth that 
+      you will come to recognize. Routing of requests occur on both the server and client side and tell each application
+      what to do. Start trouble shooting by looking at the URL and the HTTP request sent to server. Remember in Angular
+      that routing has to be imported separately and after the core library. It also has to be injected into the module
+      at the start. 
+    </li>
+  </ul>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card">
+    <div class="card-header">
+        <h5>
+            <img src="resources/images/checklist.png" height="50em" width="50em" class="mr-2">
+            Core Controller Concepts
+        </h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>$scope</b> - this allows a 1 to 1 biding between each view and its controller. Remember that 
+        it is in the router that we assign our view its controller. It is important in angular to remember that you can't use
+        anything inside your controller functions that you don't pass into it. A common mistake is to add an Angular variable into
+        a function like $http and then no request is going to the server. The reason is because in your controller when you 
+        put function($scope, $location, $http) these things needed to be passed in before they can be used in that function. This
+        is true of all functions.
+      </li>
+      <li class="list-group-item"><b>$rootScope</b> - this variable allows us to bind across the entire application. This give us a 
+        way to have a global variable. With $scope you get only 1 to 1 with controller and view. RootScope though allows binding 
+        in any controller and in any view. If you find that you are using a lot of $rootScoped variables it is probably best you 
+        set up a service inside your application.
+      </li>
+      <li class="list-group-item"><b>$location</b> - This allows you to control the router and page change after you have performed 
+        some javascript in your application under the current view. An example of this is when you click on a button(ng-click) and pass
+        in some data to a function and you want that views registered controller to perform some actions before going to the next view.
+        At the end of your function you can use $location to change the page by going to different URL.
+      </li>
+      <li class="list-group-item"><b>$http</b> - this is how you make your GET, POST, PUT, DELETE, PATCH requests to your servers.
+      </li>
+      <li class="list-group-item"><b>Services</b> - this is the most common way to share data across all of your controllers and views. 
+         Basically you put common functions that your controllers can call to get data. An example might be something like the logged
+         in users information. Each controller might only allow certain users access to certain data. 
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-4">
+<div class="card">
+    <div class="card-header">
+        <h5>
+            <img src="resources/images/view.png" height="40em" width="40em" class="mr-3">
+          Core View Concepts
+        </h5>
+    </div>
+  <ul class="list-group list-group-flush">
+    <li ng-non-bindable class="list-group-item"><b>{{ scope.varibles }}</b> - Use curly braces to render scope variables and ng-model
+      data. This is Angular's default templating. This follows jQuery's older templating libraries like 'Handlebars' and 'Mustache'
+      which both used curly braces as well to template out data on the view passed from the controller. Almost all languages
+      have adopted similar approaches to template out data to the client's view.
+    </li>
+    <li class="list-group-item"><b>ng-app</b> - This must be in any Angular application to tell Angular 
+      where to begin taking over the application at. Because Angular is considered a SPA(Single Page Application) 
+      because entire pages are not re-rendered but instead Views are injected into the center of the index page, an 
+      ng-app is always required.
+    </li>
+    <li class="list-group-item"><b>ng-view</b> - This is where the router injects your views into the application.</li>
+    <li class="list-group-item"><b>ng-click</b> - assign a click event on DOM(Document Object Model/Webpage) elements inside your .html view pages</li>
+    <li class="list-group-item"><b>ng-model</b> - assigns 2-way data binding on form input elements so that you can 
+      use this to send data to server.
+    </li>
+    <li class="list-group-item"><b>ng-show/ng-hide</b> - This shows or hides elements on your webpage based on boolean(true/false)
+      value. Because HTML is nested type language you can put an ng-show/ng-hide to scale what parts you want to show
+      or hide. Entire pages or blocks of pages can be hidden and shown depeding on what tag you place this on.
+    </li>
+    <li class="list-group-item"><b>ng-if</b> - Similar to ng-show/ng-hide. This directive completely adds or removes 
+      elements from DOM based on boolean value as well. This is often helpful for placing two of the exact same
+      size elements and it basically using it as an if/then statement allowing you to render one or the other in 
+      the DOM based on certain criteria. 
+    </li>
+    <li class="list-group-item"><b>ng-repeat</b> - This is Angular's key way to iterate through collections. Collections
+    in JavaScript are usually either object collections or array collections.</li>
+    
+
+  </ul>
+</div>
+</div>
+
+</div>  
+</div>
+
+<!-- Second Page View -->
+<div ng-if="secondPage" class="container-fluid mb-5">
+
+  <div class="row">
+  
+  <div class="col-md-4">
+  <div class="card">
+    <div class="card-header">
+        <h5>
+          <img src="resources/images/globe.png" height="40em" width="40em" class="mr-2">
+          Resource Links
+        </h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a class="mr-3" href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" rel="noopener noreferrer" target="_blank">
+        Bootstrap 4.0
+        </a><span> Use div tags and common classes to create most of your CSS across your application.</span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://bootswatch.com/" rel="noopener noreferrer" target="_blank">
+          Bootswatch
+          </a><span> Just change the Boostrap.css library out with this to give your entire bootstrap site a quick make-over.</span>
+      </li>   
+      <li class="list-group-item">
+          <a class="mr-3" href="https://bootsnipp.com/" rel="noopener noreferrer" target="_blank">
+          Bootsnipp
+          </a><span> Get free snippets from other developers for pages that you would commonly use. Like a 404 page or login pages.</span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://startbootstrap.com/template-categories/unstyled/" rel="noopener noreferrer" target="_blank">
+          Start Bootstrap
+          </a><span> Both free complete website templates as well as small fee templates. This is an excellent way to quickly
+            build a project or webpage from scratch. Often companies will hire a developer to build a website and the 
+            developer will search templates that fit the client. The developer will either get a template for free or minimal cost
+            and then build it out. Sometimes these templates can run from free to about $40 and are often sold for $1500 to 
+            $2500 after complete. These are usually only to advertise the business of the client and dont include back server ends
+            or databases.
+          </span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="http://fontawesome.io/" rel="noopener noreferrer" target="_blank">
+          Font Awesome
+          </a><span> A free icon library that is used by most companies for fonts in their applications.</span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://thenounproject.com/" rel="noopener noreferrer" target="_blank">
+          The Noun Project
+          </a><span> This is also a very popular library for finding higher grade icons. There are royalty free
+            icons in this library, but you can also pay a minimal amount if you do not want to credit the authors.
+            For higher end applications this a small price to pay for a great look.
+          </span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://unsplash.com/" rel="noopener noreferrer" target="_blank">
+          Unsplash
+          </a><span> Free high def pictures to use on your websites and bootstrap cards.</span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://www.dice.com/" rel="noopener noreferrer" target="_blank">
+          Dice
+          </a><span> You can use both the phone app as well as the website to search current jobs in your
+            area. Remember not to post your resume or fill out public data on this application until we 
+            review because national recruiting companies scan and store data about you the minute you 
+            enter or change information. Mistakes you make can come back years later. Also, you might want
+            to consider reviewing your Linked-In and Facebook or other social networking sites.
+            Recruiting companies and hiring companies immediately search these
+            sites to see if your resume matches these social site postings. I do not have Facebook or Linked-In
+            currently and I would advise that through your hiring process you carefully think through these choices
+            to make sure those sites will not negatively affect your opportunity for employment.
+            </span>
+      </li>
+      <li class="list-group-item">
+          <a class="mr-3" href="https://www.indeed.com/" rel="noopener noreferrer" target="_blank">
+          Indeed
+          </a><span> This is another excellent site and app to apply and monitor jobs in your area. Some companies
+            and recruiters use this. This site doesn't seem to be as active as Dice in the software market, but it
+            is still a good site to look and apply for jobs.
+          </span>
+      </li>
+    </ul>
+  </div>
+  </div>
+  
+  <div class="col-md-4">
+  <div class="card">
+      <div class="card-header">
+          <h5>
+              <img src="resources/images/checklist.png" height="50em" width="50em" class="mr-2">
+              Interview Questions
+          </h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>1.</b> SOLID Principles </li>
+        <li class="list-group-item"><b>2.</b> DRY - Do not repeat yourself in coding. If you are copying and posting the 
+          same code in several places you need to refactor it into a function, service, or separate class.
+        </li>
+        <li class="list-group-item"><b>3.</b> Name several design patterns and where you recently have used them?</li>
+        <li class="list-group-item"><b>4.</b> Look over and review sorting problems.</li>
+        <li class="list-group-item"><b>5.</b> What are collections, arrays, lists, hashtables and dictionaries and how do they differ?</li>
+        <li class="list-group-item"><b>6.</b> What are the 4 pillars of object oriented programming?</li>
+        <li class="list-group-item"><b>7.</b> What is the difference between and OOP and one that is not?</li>
+        <li class="list-group-item"><b>8.</b> What is serialization and deserialization?</li>
+        <li class="list-group-item"><b>9.</b> What is the difference between the stack and the heap?</li>
+        <li class="list-group-item"><b>10.</b> What does everything in C# inherit from?</li>
+        <li class="list-group-item"><b>11.</b> What does a using statement do in C#?</li>
+        <li class="list-group-item"><b>12.</b> Does C# support polymorphism? Does JavaScript?</li>
+        <li class="list-group-item"><b>13.</b> What is the difference between Java and Javascript? </li>
+        <li class="list-group-item"><b>14.</b> What types are reference types and what types are value types?</li>
+        <li class="list-group-item"><b>15.</b>  What is the difference between method overriding and method overloading?</li>
+        <li class="list-group-item"><b>16.</b> What are the different ways a method can be overloaded?</li>
+        <li class="list-group-item"><b>17.</b> What is assembly?</li>
+        <li class="list-group-item"><b>18.</b> What is the difference between a static typed language versus a dynamic language?</li>
+        <li class="list-group-item"><b>19.</b> Give examples of the several different kinds of languages?</li>
+        <li class="list-group-item"><b>20.</b> What is npm? Can you use npm on the back end of an application?</li>
+        <li class="list-group-item"><b>21.</b> How can I tell if npm is used in my application?</li>
+        <li class="list-group-item"><b>22.</b> What is grunt, gulp, and webpack and what do they do?</li>
+        <li class="list-group-item"><b>23.</b> What is a stored proc?</li>
+        <li class="list-group-item"><b>24.</b> What is docker and why would anyone want to use this technology?</li>
+        <li class="list-group-item"><b>25.</b> What is an ORM?(object relation mapper)What problem does this solve?</li>
+        <li class="list-group-item"><b>26.</b> Are routes just on the client side of an application?</li>
+        <li class="list-group-item"><b>27.</b> Why has Angular and React become popular? What are they replacing? What problem
+          in the industry are they trying to solve?
+        </li>
+        <li class="list-group-item"><b>28.</b> What is the difference between an Abstract Class and Interface in C#?</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+  <div class="card">
+      <div class="card-header">
+          <h5>
+              <img src="resources/images/view.png" height="40em" width="40em" class="mr-3">
+            Important Points
+          </h5>
+      </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <a class="mr-3" href="https://www.pluralsight.com/" rel="noopener noreferrer" target="_blank">
+            Pluralsight
+            </a><span> One of most valuable tools in your software development careers. Learning directly from Google's own
+              experts and developers and well as Microsoft's certified teachers.
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a class="mr-3" href="https://career.guru99.com/top-50-c-sharp-interview-questions-answers/" rel="noopener noreferrer" target="_blank">
+            Top 50 C# Interview questions
+            </a><span> Even if you are a front end developer most companies and staff will expect that you have familiarity with
+              either Java or C#. These are the two of most popular languages used. Reading these questions over and over will 
+              really broaden your understanding of coding and allow you to converse well in an interview when ask fringe questions.
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a class="mr-3" href="https://www.amazon.com/C-Players-Guide-3rd/dp/0985580135" rel="noopener noreferrer" target="_blank">
+            C# The Player's Guide Book
+            </a><span> One of the easiest reads and an excellent book on C#
+            </span>
+        </li>     
+        <li class="list-group-item">
+            <a class="mr-3" href="https://www.tiobe.com/tiobe-index/" rel="noopener noreferrer" target="_blank">
+            TIOBE Index
+            </a><span> This is a current month to month index of the popularity of coding languages in the world.
+              You can clearly see that Java is still the most popular in the world. If you can write C# you will be able
+              to write Java. Nashville is considered a .NET town by everyone. While Java is popular C,C++, and C# hold most 
+              of the top 5 spots and are all similar and Microsoft languages. C was the first language, then came C++, then 
+              C#. C# was developed mostly as a response to the overwhelming popularity of Java. The most important thing 
+              to note is that both Java and C# are popular because they can be compiled by a middle layer virtual machine that
+              enables these languages to be used and compiled to ANY computer device. 
+            </span>
+        </li>  
+    </ul>
+  </div>
+  </div>
+  
+  </div>  
+  </div>
